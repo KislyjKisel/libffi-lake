@@ -16,8 +16,9 @@ def tryRunProcess_ {m} [Monad m] [MonadError m] [MonadLiftT IO m] (sa : IO.Proce
 extern_lib libffi (pkg : Package) := do
   match get_config? src with
     | none | some "release" =>
+      let cd ← IO.currentDir
       tryRunProcess_ {
-        cmd := if System.Platform.isWindows then s!"{pkg.dir}/build.bat" else s!"{pkg.dir}/build.sh"
+        cmd := if System.Platform.isWindows then s!"{cd}\\{pkg.dir}\\build.bat" else s!"{cd}/{pkg.dir}/build.sh"
         cwd := pkg.dir
       }
     | some other => error s!"`libffi` unknown `src` '{other}'"
