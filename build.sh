@@ -9,7 +9,7 @@ if [ ! -d "lib" ] || [ ! -d "include" ]; then
     cd ./libffi-$LIBFFI_VERSION
     mkdir build
     cd build
-    ../configure --enable-static --disable-shared --with-pic
+    ../configure --enable-static --with-pic # --disable-shared
     make
     mv -f ./include ../../include
     mv -f ./.libs ../../lib
