@@ -14,6 +14,11 @@ def tryRunProcess_ {m} [Monad m] [MonadError m] [MonadLiftT IO m] (sa : IO.Proce
 
 @[default_target]
 extern_lib libffi (pkg : Package) := do
+  if (get_config? disable).isSome then
+    return ← inputFile $
+      if System.Platform.isWindows
+        then pkg.dir / "empty.lib"
+        else pkg.dir / "empty.a"
   match get_config? src with
     | none | some "release" =>
       let cd ← IO.currentDir
