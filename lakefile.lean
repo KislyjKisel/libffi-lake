@@ -13,7 +13,7 @@ def tryRunProcess_ {m} [Monad m] [MonadError m] [MonadLiftT IO m] (sa : IO.Proce
     pure ()
 
 @[default_target]
-extern_lib libffi (pkg : Package) := do
+extern_lib libffi (pkg : NPackage _package.name) := do
   if (get_config? disable).isSome then
     return ← inputFile $
       if System.Platform.isWindows
