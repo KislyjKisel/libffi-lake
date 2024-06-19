@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LIBFFI_VERSION=3.4.4
+LIBFFI_VERSION=3.4.6
 
 if [ ! -d "lib" ] || [ ! -d "include" ]; then
     curl -OL https://github.com/libffi/libffi/releases/download/v$LIBFFI_VERSION/libffi-$LIBFFI_VERSION.tar.gz
